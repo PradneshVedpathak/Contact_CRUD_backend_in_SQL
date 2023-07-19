@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 
 //----------Get All Contacts----------//
 app.get("/allContacts", (req, res) => {
-  const sqlGetAll = "SELECT * FROM contacts";
+  const sqlGetAll = "SELECT * FROM Contacts";
   db.query(sqlGetAll, (err, result) => {
     if (err) {
       console.log(err);
@@ -26,7 +26,7 @@ app.get("/allContacts", (req, res) => {
 //----------Get Single Contact----------//
 app.get("/contact/:_id", (req, res) => {
   const { _id } = req.params;
-  const sqlGetSingle = "SELECT * FROM contacts WHERE _id = ?";
+  const sqlGetSingle = "SELECT * FROM Contacts WHERE _id = ?";
   db.query(sqlGetSingle, _id, (err, result) => {
     if (err) {
       console.log(err);
@@ -40,7 +40,7 @@ app.get("/contact/:_id", (req, res) => {
 app.post("/addContact", (req, res) => {
   const { firstName, lastName, phoneNumber } = req.body;
   const sqlInsert =
-    "INSERT INTO contacts(firstName,lastName,phoneNumber) VALUES (?,?,?)";
+    "INSERT INTO Contacts(firstName,lastName,phoneNumber) VALUES (?,?,?)";
   db.query(sqlInsert, [firstName, lastName, phoneNumber], (err, result) => {
     if (err) {
       console.log(err);
@@ -53,7 +53,7 @@ app.post("/addContact", (req, res) => {
 //----------Delete Contact----------//
 app.delete("/removeContact/:_id", (req, res) => {
   const { _id } = req.params;
-  const sqlRemove = "DELETE FROM contacts WHERE _id = ?";
+  const sqlRemove = "DELETE FROM Contacts WHERE _id = ?";
   db.query(sqlRemove, _id, (err, result) => {
     if (err) {
       console.log(err);
@@ -68,7 +68,7 @@ app.patch("/updateContact/:_id", (req, res) => {
   const { _id } = req.params;
   const { firstName, lastName, phoneNumber } = req.body;
   const sqlUpdate =
-    "UPDATE contacts SET firstName = ?, lastName = ?, phoneNumber = ? WHERE _id = ?";
+    "UPDATE Contacts SET firstName = ?, lastName = ?, phoneNumber = ? WHERE _id = ?";
   db.query(
     sqlUpdate,
     [firstName, lastName, phoneNumber, _id],
